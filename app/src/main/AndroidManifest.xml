@@ -25,6 +25,12 @@
 
         <service android:name=".DownloadService" />
 
+        <receiver android:name=".MyBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

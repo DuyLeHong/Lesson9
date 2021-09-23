@@ -34,10 +34,24 @@ public class MainActivity extends AppCompatActivity {
         registerBroadCastReceiver();
     }
 
+    MyBroadcast broadcast;
+
     private void registerBroadCastReceiver() {
         IntentFilter filter = new IntentFilter(DOWNLOAD_COMPLETE_ACTION);
         registerReceiver(receiver, filter);
+
+        //lang nghe thay doi ket noi mang
+        broadcast = new MyBroadcast();
+        IntentFilter filter2 = new IntentFilter("android.intent.action.AIRPLANE_MODE");
+        registerReceiver(broadcast, filter2);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //unregisterReceiver(broadcast);
+    }
+
 
     private BroadcastReceiver receiver = new DownloadCompleteReceiver();
 
@@ -57,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkForStartDownloadService();
+
+                unregisterReceiver(broadcast);
             }
         });
     }

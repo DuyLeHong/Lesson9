@@ -63,7 +63,9 @@ public class DownloadService extends Service {
             startDownload(url);
         }
 
-        return super.onStartCommand(intent, flags, startId);
+        //return super.onStartCommand(intent, flags, startId);
+
+        return START_NOT_STICKY;
     }
 
     private void startDownload(String url) {
