@@ -86,11 +86,17 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, DownloadService.class);
         intent.putExtra(URL_ARG, IMAGE_URL);
-        startService(intent);
+        //startService(intent);
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            startForegroundService(intent);
-//        }
+        //stopService(intent);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
+        }
+
+        //ContextCompat.startForegroundService(getApplicationContext(), intent);
 
 
     }
